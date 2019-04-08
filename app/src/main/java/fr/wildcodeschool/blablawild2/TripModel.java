@@ -19,6 +19,12 @@ public class TripModel implements Parcelable {
         this.date = date;
     }
 
+    protected TripModel(Parcel in) {
+        departure = in.readString();
+        destination = in.readString();
+        date = in.readString();
+    }
+
     public String getDeparture() {
         return departure;
     }
@@ -29,24 +35,6 @@ public class TripModel implements Parcelable {
 
     public String getDate() {
         return date;
-    }
-
-    public static final Creator<TripModel> CREATOR = new Creator<TripModel>() {
-        @Override
-        public TripModel createFromParcel(Parcel in) {
-            return new TripModel(in);
-        }
-
-        @Override
-        public TripModel[] newArray(int size) {
-            return new TripModel[size];
-        }
-    };
-
-    protected TripModel(Parcel in) {
-        departure = in.readString();
-        destination = in.readString();
-        date = in.readString();
     }
 
     @Override
@@ -60,4 +48,16 @@ public class TripModel implements Parcelable {
     public int describeContents() {
         return 0;
     }
+
+    public static final Creator<TripModel> CREATOR = new Creator<TripModel>() {
+        @Override
+        public TripModel createFromParcel(Parcel in) {
+            return new TripModel(in);
+        }
+
+        @Override
+        public TripModel[] newArray(int size) {
+            return new TripModel[size];
+        }
+    };
 }

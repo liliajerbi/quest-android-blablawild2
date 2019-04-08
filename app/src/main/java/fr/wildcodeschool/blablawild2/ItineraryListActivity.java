@@ -1,11 +1,9 @@
 package fr.wildcodeschool.blablawild2;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class ItineraryListActivity extends AppCompatActivity {
