@@ -1,21 +1,23 @@
 package fr.wildcodeschool.blablawild2;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.support.annotation.NonNull;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Intent;
+
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -51,10 +53,11 @@ public class ItineraryCreateActivity extends AppCompatActivity {
                     Toast.makeText(ItineraryCreateActivity.this, R.string.fill_all_fields, Toast.LENGTH_SHORT).show();
                 } else {
                     ItineraryModel itineraryModel = new ItineraryModel(departure, destination, driver, mDate, Integer.parseInt(price));
+                    // TODO : save itineraryModel into Firebase
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference itinenaryRef = database.getReference("itinenaries");
-                    String key = itinenaryRef.push().getKey();
-                    itinenaryRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                    DatabaseReference itiniraryRef = database.getReference("itineraries");
+                    String key = itiniraryRef.push().getKey();
+                    itiniraryRef.child(key).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Intent intent = new Intent(ItineraryCreateActivity.this, MainActivity.class);
@@ -63,11 +66,12 @@ public class ItineraryCreateActivity extends AppCompatActivity {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
-                            Toast.makeText(ItineraryCreateActivity.this, "Failed to read value.", Toast.LENGTH_LONG).show();
+
+                            Toast.makeText(ItineraryCreateActivity.this, "Failed to read value", Toast.LENGTH_LONG).show();
+
                         }
                     });
-
-                    itinenaryRef.child(key).setValue(itineraryModel);
+                    itiniraryRef.child(key).setValue(itineraryModel);
                 }
             }
         });

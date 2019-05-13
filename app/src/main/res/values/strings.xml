@@ -13,4 +13,5 @@
     <string name="fill_all_fields">Please fill all the fields !</string>
     <string name="search">Search</string>
     <string name="departure_to_destination"><![CDATA[%s >> %s]]></string>
+    <string name="failed_to_read_value">Failed to read value</string>
 </resources>
