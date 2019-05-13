@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -13,6 +16,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // accès à la base de données Firebase
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+// sélection de la référence "message"
+        DatabaseReference itineraryRef = database.getReference("itinerary");
+// lecture des données à la référence "itinerary" une seule fois
+        /*itineraryRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // récupère la donnée contenue et la convertie en ItineraryModel
+                ItineraryModel itinerary = dataSnapshot.getValue(ItineraryModel.class);
+                // affiche le conducteur de l'itineraire
+                Toast.makeText(MainActivity.this, itinerary.getDriver(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // en cas d'erreur de récupération de la donnée
+                Toast.makeText(MainActivity.this, "Failed to read value.", Toast.LENGTH_LONG).show();
+            }
+        });
         Button bAddItinerary = findViewById(R.id.b_add_itinerary);
         bAddItinerary.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -20,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, ItineraryCreateActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         Button bSearchItinerary = findViewById(R.id.b_search_itinerary);
         bSearchItinerary.setOnClickListener(new View.OnClickListener() {
